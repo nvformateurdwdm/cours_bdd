@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : ven. 05 août 2022 à 15:12
+-- Généré le : ven. 05 août 2022 à 21:56
 -- Version du serveur : 10.4.21-MariaDB
 -- Version de PHP : 7.4.29
 
@@ -42,7 +42,7 @@ CREATE TABLE `castings` (
 --
 
 INSERT INTO `castings` (`id`, `firstname`, `lastname`, `sex`, `about`, `birthdate`, `type`) VALUES
-(1, 'Patrick', 'Swayze', 0, 'Fiche descriptive de Patrick Swayze', '2018-08-02', 1),
+(1, 'Patrick', 'Swayze', 0, 'Fiche descriptive de Patrick Swayze', '2018-08-02', 3),
 (2, 'James', 'Cameron', 0, 'Fiche de James Cameron.', '2022-08-03', 2),
 (3, 'Viggo', 'Mortensen', 0, 'Fiche de Viggo.', '2014-08-08', 1),
 (4, 'Sigourney', 'Weaver', 1, 'Fiche de Sigourney.', '2012-08-16', 1),
@@ -119,7 +119,6 @@ CREATE TABLE `movies` (
   `image_url` varchar(100) NOT NULL,
   `runtime` int(6) NOT NULL,
   `description` text NOT NULL,
-  `rating` int(11) DEFAULT NULL,
   `release_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -127,8 +126,16 @@ CREATE TABLE `movies` (
 -- Déchargement des données de la table `movies`
 --
 
-INSERT INTO `movies` (`id`, `title`, `image_url`, `runtime`, `description`, `rating`, `release_date`) VALUES
-(1, 'Kompromat', 'image.jpg', 2500, 'Fiche de Kompromat.', NULL, '2017-08-02');
+INSERT INTO `movies` (`id`, `title`, `image_url`, `runtime`, `description`, `release_date`) VALUES
+(1, 'Kompromat', 'image.jpg', 2500, 'Fiche de Kompromat.', '2017-08-02'),
+(2, 'L\'année du Requin', 'image2.jpg', 65789, 'Ceci est la desc de l\'année du requin', '2013-08-01'),
+(3, 'Le gendarme de Saint-Tropez', 'le-gendarme-de-saint-tropez.jpg', 5700, 'Suite à une promotion, le gendarme Cruchot quitte son petit village provincial pour prendre se nouvelles fonctions dans la commune de Saint-Tropez. Sa fille unique, la charmante Nicole est folle de joie et ne tarde pas à se faire une foule de nouveaux amis « yé-yé » tout en s’attirant de sacrés ennuis, tandis que Cruchot prend activement la direction d’opérations difficiles et délicates…', '2018-08-01'),
+(4, 'Kompromat', 'kompromat.jpg', 6000, 'Russie, 2017. Mathieu Roussel est arrêté et incarcéré sous les yeux de sa fille. Expatrié français, il est victime d’un « kompromat », de faux documents compromettants utilisés par les services secrets russes pour nuire à un ennemi de l’Etat. Menacé d’une peine de prison à vie, il ne lui reste qu’une option : s’évader, et rejoindre la France par ses propres moyens…', '2022-09-07'),
+(5, 'L\'année du requin', 'l-annee-du-requin.jpg', 5220, 'Maja, gendarme maritime dans les landes, voit se réaliser son pire cauchemar : prendre sa retraite anticipée ! Thierry, son mari, a déjà prévu la place de camping et le mobil home. Mais la disparition d’un vacancier met toute la côte en alerte : un requin rôde dans la baie ! Aidée de ses jeunes collègues Eugénie et Blaise, elle saute sur l’occasion pour s’offrir une dernière mission…', '2022-08-03'),
+(6, 'Le bon, la brute et le truand', 'le-bon-la-brute-et-le-truand.jpg', 10800, 'Pendant la Guerre de Sécession, trois hommes, préférant s\'intéresser à leur profit personnel, se lancent à la recherche d\'un coffre contenant 200 000 dollars en pièces d\'or volés à l\'armée sudiste. Tuco sait que le trésor se trouve dans un cimetière, tandis que Joe connaît le nom inscrit sur la pierre tombale qui sert de cache. Chacun a besoin de l\'autre. Mais un troisième homme entre dans la course : Setenza, une brute qui n\'hésite pas à massacrer femmes et enfants pour parvenir à ses fins.', '1968-03-08'),
+(7, 'L\'avare', 'l-avare.jpg', 5700, 'Harpagon, un bourgeois avare, a une fils, Cléante, et une fille, Elise. Cette dernière est amoureuse de Valère, qui ne trouve d\'autre solution pour se rapprocher de sa bien aimée que de se faire embaucher chez son père comme intendant. Cléante, lui, aime Marianne, une jeune femme sans aucune fortune que Harpagon veut aussi épouser. Le vieux bourgeois décide de marier sa fille au Seigneur Anselme car il accepte d\'en faire son épouse sans dote...', '1980-03-05'),
+(8, 'As Bestas', 'as-bestas.jpg', 6086, 'Antoine et Olga, un couple de Français, sont installés depuis longtemps dans un petit village de Galice. Ils ont une ferme et restaurent des maisons abandonnées pour faciliter le repeuplement. Tout devrait être idyllique mais un grave conflit avec leurs voisins fait monter la tension jusqu’à l’irréparable…', '2022-07-20'),
+(9, 'Polisse', 'polisse.jpg', 7209, 'Le quotidien des policiers de la BPM (Brigade de Protection des Mineurs) ce sont les gardes à vue de pédophiles, les arrestations de pickpockets mineurs mais aussi la pause déjeuner où l’on se raconte ses problèmes de couple ; ce sont les auditions de parents maltraitants, les dépositions des enfants, les dérives de la sexualité chez les adolescents, mais aussi la solidarité entre collègues et les fous rires incontrôlables dans les moments les plus impensables ; c’est savoir que le pire existe, et tenter de faire avec… Comment ces policiers parviennent-ils à trouver l’équilibre entre leurs vies privées et la réalité à laquelle ils sont confrontés, tous les jours ? Fred, l’écorché du groupe, aura du mal à supporter le regard de Melissa, mandatée par le ministère de l’intérieur pour réaliser un livre de photos sur cette brigade.', '2011-09-19');
 
 -- --------------------------------------------------------
 
@@ -137,6 +144,7 @@ INSERT INTO `movies` (`id`, `title`, `image_url`, `runtime`, `description`, `rat
 --
 
 CREATE TABLE `movies_castings` (
+  `id` int(11) NOT NULL,
   `movies_id` int(11) NOT NULL,
   `castings_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -145,9 +153,12 @@ CREATE TABLE `movies_castings` (
 -- Déchargement des données de la table `movies_castings`
 --
 
-INSERT INTO `movies_castings` (`movies_id`, `castings_id`) VALUES
-(1, 1),
-(1, 1);
+INSERT INTO `movies_castings` (`id`, `movies_id`, `castings_id`) VALUES
+(1, 1, 1),
+(2, 1, 13),
+(3, 3, 21),
+(4, 3, 13),
+(5, 3, 15);
 
 -- --------------------------------------------------------
 
@@ -167,6 +178,59 @@ CREATE TABLE `movies_genres` (
 INSERT INTO `movies_genres` (`movies_id`, `genres_id`) VALUES
 (1, 2),
 (1, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `movies_users_ratings`
+--
+
+CREATE TABLE `movies_users_ratings` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `movie_id` int(11) NOT NULL,
+  `rate` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `movies_users_ratings`
+--
+
+INSERT INTO `movies_users_ratings` (`id`, `user_id`, `movie_id`, `rate`) VALUES
+(1, 4, 1, 15),
+(2, 3, 1, 80),
+(3, 2, 1, 55),
+(4, 1, 2, 5),
+(5, 4, 2, 90),
+(6, 2, 2, 50),
+(7, 3, 2, 35),
+(8, 1, 9, 82),
+(9, 2, 9, 34);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `firstname` varchar(100) NOT NULL,
+  `lastname` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `sex` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `users`
+--
+
+INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `sex`) VALUES
+(1, 'Nicolas', 'Védrine', 'nicolas.vedrine@gmail.com', '1234', 0),
+(2, 'Kévin', 'Kali', 'kevin.kali@gmail.com', '1234', 0),
+(3, 'Bernet', 'Boisdur', 'bernet.boisdur@gmail.com', '1234', 0),
+(4, 'Alex', 'Hubert', 'alex.hubert@gmail.com', '1234', 0);
 
 --
 -- Index pour les tables déchargées
@@ -201,6 +265,7 @@ ALTER TABLE `movies`
 -- Index pour la table `movies_castings`
 --
 ALTER TABLE `movies_castings`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `movies_id` (`movies_id`),
   ADD KEY `castings_id` (`castings_id`);
 
@@ -210,6 +275,20 @@ ALTER TABLE `movies_castings`
 ALTER TABLE `movies_genres`
   ADD KEY `movies_id` (`movies_id`),
   ADD KEY `genres_id` (`genres_id`);
+
+--
+-- Index pour la table `movies_users_ratings`
+--
+ALTER TABLE `movies_users_ratings`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `movie_id` (`movie_id`);
+
+--
+-- Index pour la table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -237,7 +316,25 @@ ALTER TABLE `genres`
 -- AUTO_INCREMENT pour la table `movies`
 --
 ALTER TABLE `movies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT pour la table `movies_castings`
+--
+ALTER TABLE `movies_castings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT pour la table `movies_users_ratings`
+--
+ALTER TABLE `movies_users_ratings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT pour la table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Contraintes pour les tables déchargées
@@ -262,6 +359,13 @@ ALTER TABLE `movies_castings`
 ALTER TABLE `movies_genres`
   ADD CONSTRAINT `movies_genres_ibfk_1` FOREIGN KEY (`movies_id`) REFERENCES `movies` (`id`),
   ADD CONSTRAINT `movies_genres_ibfk_2` FOREIGN KEY (`genres_id`) REFERENCES `genres` (`id`);
+
+--
+-- Contraintes pour la table `movies_users_ratings`
+--
+ALTER TABLE `movies_users_ratings`
+  ADD CONSTRAINT `movies_users_ratings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `movies_users_ratings_ibfk_2` FOREIGN KEY (`movie_id`) REFERENCES `movies` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
