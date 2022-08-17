@@ -47,14 +47,15 @@ FROM castings INNER JOIN casting_types ON castings.type = casting_types.id
 WHERE casting_types.name = 'réalisateur';
 
 -- récupération du casting de tous les films
-SELECT movies.id, movies.title, castings.firstname, castings.lastname FROM castings
-INNER JOIN movies_castings ON movies_castings.castings_id = castings.id  
-INNER JOIN movies ON movies_castings.movies_id = movies.id;
+SELECT movies.id, movies.title, castings.firstname, castings.lastname
+FROM castings
+INNER JOIN movies_castings ON movies_castings.casting_id = castings.id  
+INNER JOIN movies ON movies_castings.movie_id = movies.id;
 
 -- récupération du casting d'un film en particulier (le gendarme de st-tropez dans notre exemple)
 SELECT movies.id, movies.title, castings.firstname, castings.lastname FROM castings
-INNER JOIN movies_castings ON movies_castings.castings_id = castings.id  
-INNER JOIN movies ON movies_castings.movies_id = movies.id
+INNER JOIN movies_castings ON movies_castings.casting_id = castings.id  
+INNER JOIN movies ON movies_castings.movie_id = movies.id
 WHERE movies.id = 3;
 
 -- récupération des notes de tous les utilisateurs par titre de film
@@ -86,7 +87,7 @@ WHERE movies_users_ratings.rate > 50
 ORDER BY movies_users_ratings.rate;
 
 -- note moyenne de tout le site
-SELECT AVG(movies_users_ratings.rate) as average_rate, movies_users_ratings.movie_id
+SELECT AVG(movies_users_ratings.rate) as average_rate
 FROM movies_users_ratings INNER JOIN movies;
 
 -- note moyenne de chaque film
@@ -96,10 +97,18 @@ FROM movies_users_ratings
     ON movies_users_ratings.movie_id = movies.id
 GROUP BY movies.id;
 
--- note moyenne de chaque film dont la moyenne est supérieure à 45
+-- note moyenne de chaque film, ordonné par note du plus grand au plus petit
 SELECT movies_users_ratings.movie_id, movies.title, AVG(movies_users_ratings.rate) as average_rate
 FROM movies_users_ratings
     INNER JOIN movies
     ON movies_users_ratings.movie_id = movies.id
 GROUP BY movies.id
-HAVING average_rate > 45;
+ORDER BY movies_users_ratings.rate DESC;
+
+-- note moyenne de chaque film, ordonné par note du plus grand au plus petit avec seulement ceux dont la note est supérieure à 60
+SELECT movies_users_ratings.movie_id, movies.title, AVG(movies_users_ratings.rate) as average_rate
+FROM movies_users_ratings
+    INNER JOIN movies
+    ON movies_users_ratings.movie_id = movies.id
+GROUP BY movies.id
+HAVING average_rate > 60;
